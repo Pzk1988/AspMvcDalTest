@@ -1,0 +1,35 @@
+﻿@model IEnumerable<PANWebApp.Models.AuthorViewModel>
+
+@{
+    ViewBag.Title = "Authors list";
+}
+
+<h2>List of existing authors:</h2>
+
+<div>
+    <table class="media-table">
+        <tr>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>Actions</th>
+        </tr>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var author in Model)
+            {
+                <tr>
+                    <td>@author.LastName</td>
+                    <td>@author.FirstName</td>
+
+                    <td>
+                        @Html.ActionLink("Details", "Details", "Authors", new { authorId = author.Id }, null) |
+                        @Html.ActionLink("Edit", "Edit", "Authors", new { authorId = author.Id }, null) |
+                        @Html.ActionLink("Delete", "Delete", "Authors", new { authorId = author.Id }, null)
+                    </td>
+                </tr>
+            }
+        }
+
+    </table>
+    @Html.ActionLink("Add new", "Create", "Authors")
+</div>

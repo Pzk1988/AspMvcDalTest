@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Welcome in personal books library</h2>
+
+<p>
+    To access the library you need to be logged used. Please:
+</p>
+<p>
+    @Html.ActionLink("Login as a existing user", "Login", "Account")
+</p>
+<div>Or</div>
+<p>
+    @Html.ActionLink("Register as a new user", "Register", "Account")
+</p>

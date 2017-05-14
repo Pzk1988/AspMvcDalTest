@@ -1,0 +1,36 @@
+﻿@model PANWebApp.Models.AuthorDetailsViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<div class="form-group">
+    <img src="@Url.Action("GetAuhtorsImage", "Authors", new { authorId = Model.Id }, null)" height="130" />
+   
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.Label(Model.FirstName, new { @class = "form-control" })
+    </div>
+</div>
+<div class="form-group">
+    @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.Label(Model.LastName, new { @class = "form-control" })
+    </div>
+</div>
+
+<div class="form-group">
+    @Html.Label("Number of books: ", new { @class = "col-md-2 control-label" })
+    <div class="col-md-10">
+        @Html.Label(Model.Books.Length.ToString(), new { @class = "form-control" })
+    </div>
+</div>
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        @Html.ActionLink("Go to authors", "Index", "Authors", new { @class = "btn btn-default" })
+    </div>
+</div>
+
