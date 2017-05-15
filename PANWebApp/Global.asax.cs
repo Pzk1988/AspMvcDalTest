@@ -26,7 +26,9 @@ namespace PANWebApp
                 cfg.CreateMap<AuthorDetailsViewModel, AuthorDTO>();
                 cfg.CreateMap<BookDTO, BookViewModel>();
                 cfg.CreateMap<BookViewModel, BookDTO>();
-                
+                cfg.CreateMap<BookDTO, BookDetailsViewModel>();
+                cfg.CreateMap<BookDetailsViewModel, BookDTO>();
+
             });
         }
         protected void Application_Start()

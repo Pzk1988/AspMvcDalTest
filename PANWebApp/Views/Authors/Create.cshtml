@@ -32,6 +32,8 @@
     </div>
 }
 
+@section scripts
+{
 <script type="text/javascript">
     function readURL(input) {
 
@@ -46,7 +48,9 @@
         }
     }
 
-    $("#fileUpload").change(function() {
+    $("#fileUpload").change(function () {
         readURL(this);
     });
 </script>
+}
+

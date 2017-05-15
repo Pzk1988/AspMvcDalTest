@@ -54,9 +54,41 @@ namespace PANWebApp.Controllers
 
             return View(authorDetails);
         }
-        public ActionResult Edit()
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(AuthorDetailsViewModel authorDetails, HttpPostedFileBase ImageFile)
         {
-            return View();
+            var authorDto = Mapper.Map<AuthorDTO>(authorDetails);
+            if (ImageFile == null)
+            {
+                var authorDto2 = _dataAccess.GetAuthorDetails(authorDetails.Id);
+                authorDto.Image = authorDto2.Image;
+            }
+            else
+            {
+                using(var ms = new MemoryStream())
+                {
+                    ImageFile.InputStream.CopyTo(ms);
+                    authorDto.Image = ms.ToArray();
+                }
+            }
+
+            if (ModelState.IsValid)
+            {
+                _dataAccess.UpdateAuthor(authorDto);
+                _dataAccess.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return View(authorDetails);
+        }
+
+        public ActionResult Edit(Guid? authorId)
+        {
+            var detailedAuthor = _dataAccess.GetAuthorDetails(authorId.GetValueOrDefault());
+            AuthorDetailsViewModel model = Mapper.Instance.Map<AuthorDetailsViewModel>(detailedAuthor);
+            return View(model);
         }
 
         public FileContentResult GetAuhtorsImage(Guid? authorId)
