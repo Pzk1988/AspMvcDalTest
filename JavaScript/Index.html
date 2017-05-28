@@ -3,9 +3,34 @@
 <head>
     <meta charset="utf-8" />
     <title></title>
+    <link rel="stylesheet" href="Content/angular-material.min.css"/>
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/angular-animate.min.js"></script>
+    <script src="Scripts/angular-aria.min.js"></script>
+    <script src="Scripts/angular-material.min.js"></script>
+    <script src="Scripts/angular-messages.min.js"></script>
+    <script src="App/app.js"></script>
+    <script src="App/controller.js"></script>
 </head>
-<body>
-    <h1>INDEX</h1>
-    <script src="testSrcipt.js"></script>
+<body ng-app="shopListApp">
+    <div ng-controller="listController">
+        <ul>
+            <li ng-repeat="product in products" ng-model="products">
+                {{product}}
+                <md-button ng-click="removeItem($index)" class="md-fab md-mini">Remove</md-button>
+            </li>
+        </ul>
+        <!--div layout="row">
+            <input ng-model="newProduct"/>
+            <button ng-click="addItem()">Add</button>
+        </!div-->
+        <div layout="row">
+            <md-input-container class="md-block">
+                <label>new product</label>
+                <input ng-model="newProduct"/>
+            </md-input-container>
+            <md-button ng-click="addItem()" class="md-fab md-primary">Add</md-button>
+        </div>
+    </div>
 </body>
 </html>
