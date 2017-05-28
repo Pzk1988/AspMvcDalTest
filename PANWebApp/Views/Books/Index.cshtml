@@ -1,0 +1,29 @@
+﻿@model IEnumerable<PANWebApp.Models.BookViewModel>
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>View</h2>
+
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Year</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    @foreach(var item in Model)
+    {
+        <tr>
+            <th>@item.Title</th>
+            <th>@item.Year</th>
+            <th class="">
+                @Html.ActionLink("Edit", "Edit", "Books", new {bookId = item.Id }, new {@class="btn btn-default" })
+                @Html.ActionLink("Details", "Details", "Books", new {bookId = item.Id }, new { @class = "btn btn-default" })
+            </th>
+        </tr>
+    }
+</table>
+@Html.ActionLink("Add new", "Add", "Books", new { @class = "btn btn-primary" })

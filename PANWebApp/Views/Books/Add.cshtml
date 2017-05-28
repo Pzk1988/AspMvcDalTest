@@ -1,0 +1,12 @@
+﻿@model PANWebApp.Models.BookDetailsViewModel
+
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add</h2>
+
+@using (Html.BeginForm("Add", "Books"))
+{
+    <input type="submit" value="Add"/>
+}

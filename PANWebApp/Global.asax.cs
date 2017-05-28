@@ -28,6 +28,8 @@ namespace PANWebApp
                 cfg.CreateMap<BookViewModel, BookDTO>();
                 cfg.CreateMap<BookDTO, BookDetailsViewModel>();
                 cfg.CreateMap<BookDetailsViewModel, BookDTO>();
+                cfg.CreateMap<MovieDTO, MovieViewModel>();
+                cfg.CreateMap<MovieViewModel, MovieDTO>();
 
             });
         }

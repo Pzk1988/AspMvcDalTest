@@ -57,9 +57,11 @@
     <Compile Include="DbModels\Book.cs" />
     <Compile Include="DbModels\EntityBase.cs" />
     <Compile Include="DbModels\LibraryContext.cs" />
+    <Compile Include="DbModels\Movies.cs" />
     <Compile Include="DbModels\User.cs" />
     <Compile Include="DTO\AuthorDTO.cs" />
     <Compile Include="DTO\BookDTO.cs" />
+    <Compile Include="DTO\MovieDTO.cs" />
     <Compile Include="DTO\UserDTO.cs" />
     <Compile Include="Migrations\201705132324411_init.cs" />
     <Compile Include="Migrations\201705132324411_init.Designer.cs">
@@ -70,6 +72,7 @@
     <Compile Include="Repositories\AuthorsRepository.cs" />
     <Compile Include="Repositories\BooksRepository.cs" />
     <Compile Include="Repositories\IRepository.cs" />
+    <Compile Include="Repositories\MoviesRepository.cs" />
     <Compile Include="Repositories\RepositoryBase.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
   </ItemGroup>

@@ -24,12 +24,14 @@ namespace PANWebApp.DAL.DbModels
         public virtual DbSet<Author> Authors{ get; set; }
         public virtual DbSet<Book> Books { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Movies> Movies { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Book>().ToTable("Books");
             modelBuilder.Entity<Author>().ToTable("Authors");
             modelBuilder.Entity<User>().ToTable("Users");
+            modelBuilder.Entity<Movies>().ToTable("Movies");
 
             modelBuilder.Entity<Book>().Property(_ => _.Cover).HasColumnType("image");
 

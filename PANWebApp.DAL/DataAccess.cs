@@ -13,8 +13,10 @@ namespace PANWebApp.DAL
         private readonly AuthorsRepository _authorsRepository;
         private readonly BooksRepository _booksRepository;
         private readonly UsersRepository _usersRepository;
+        private readonly MoviesRepository _moviesRepository;
         private readonly LibraryContext _context;
         private static readonly IMapper _mapper;
+
         static DataAccess()
         {
             _mapper = new Mapper(new MapperConfiguration(cfg =>
@@ -23,6 +25,7 @@ namespace PANWebApp.DAL
                 cfg.CreateMap<UserDTO, User>();
                 cfg.CreateMap<Book, BookDTO>();
                 cfg.CreateMap<BookDTO, Book>();
+                cfg.CreateMap<MovieDTO, Movies>();
                 cfg.CreateMap<Author, AuthorDTO>().ForMember(dto => dto.Image,
                     db => db.MapFrom(_ => Convert.FromBase64String(_.Image)));
 
@@ -37,6 +40,7 @@ namespace PANWebApp.DAL
             _usersRepository = new UsersRepository(_context);
             _booksRepository = new BooksRepository(_context);
             _authorsRepository = new AuthorsRepository(_context);
+            _moviesRepository = new MoviesRepository(_context);
         }
 
         #region User
@@ -169,6 +173,40 @@ namespace PANWebApp.DAL
 
             return returnValue;
         }
+        #endregion Book
+
+
+        #region Movie
+        public List<MovieDTO> GetMovies()
+        {
+            List<MovieDTO> returnValue = new List<MovieDTO>();
+
+            foreach (Movies movieEntity in _moviesRepository.GetAll())
+            {
+                returnValue.Add(new MovieDTO()
+                {
+                    Id = movieEntity.Id,
+                    Title = movieEntity.Title,
+                    Year = movieEntity.Year,
+                    Director = movieEntity.Director,
+                });
+            }
+
+            return returnValue;
+        }
+
+        public void RemoveMovie(Guid id)
+        {
+            _moviesRepository.Delete(id);
+        }
+
+        public void CreateNewMovie(MovieDTO movieDTO)
+        {
+            Movies movie = _mapper.Map<Movies>(movieDTO);
+            movie.Id = Guid.NewGuid();
+            _moviesRepository.Save(movie);
+        }
+
         #endregion Book
 
         public void SaveChanges()

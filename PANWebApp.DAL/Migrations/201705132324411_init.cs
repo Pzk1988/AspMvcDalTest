@@ -55,7 +55,18 @@ namespace PANWebApp.DAL.Migrations
                 .ForeignKey("dbo.Authors", t => t.AuthorId, cascadeDelete: true)
                 .Index(t => t.BookId)
                 .Index(t => t.AuthorId);
-            
+
+            CreateTable(
+                "dbo.Movies",
+                c => new
+                {
+                    Id = c.Guid(nullable: false),
+                    Title = c.String(nullable: false),
+                    Year = c.Int(nullable: false),
+                    Director = c.String(nullable: false),
+                })
+                .PrimaryKey(t => t.Id);
+
         }
         
         public override void Down()
@@ -68,6 +79,7 @@ namespace PANWebApp.DAL.Migrations
             DropTable("dbo.Users");
             DropTable("dbo.Books");
             DropTable("dbo.Authors");
+            DropTable("dbo.Movies");
         }
     }
 }

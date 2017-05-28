@@ -44,9 +44,14 @@ namespace PANWebApp.DAL.Migrations
                 Year = 1969
             };
 
+            Movies manOnFire = new Movies("8A15118A-EB30-4213-5A08-7F4324B52EFD") {Title = "Man on fire", Year = 2010, Director = "Jakis tam" };
+
             context.Authors.AddOrUpdate(_ => _.Id, umbertoEco, marioPuzo);
 
             context.Books.AddOrUpdate(_ => _.Id, rose, baudolino, godfather);
+
+            context.Movies.AddOrUpdate(_ => _.Id, manOnFire);
+
             context.SaveChanges();
             base.Seed(context);
         }
